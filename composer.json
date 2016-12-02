@@ -1,0 +1,14 @@
+{
+	"name": "sjelfull/publishedevent",
+	"description": "Triggers a event for elements that was enabled at a given time.",
+	"type": "craft-plugin",
+	"authors": [
+		{
+			"name": "Fred Carlsen",
+			"homepage": "http://sjelfull.no"
+		}
+	],
+	"require": {
+		"composer/installers": "~1.0"
+	}
+}
