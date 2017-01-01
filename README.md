@@ -2,6 +2,8 @@
 
 Triggers a event for elements that was enabled at a given time.
 
+*Note: This is not a fully working plugin yet, but simply the start of an idea on how to implement a event for when a entry with a future publish date is enabled.* 
+
 ![Screenshot](resources/screenshots/plugin_logo.png)
 
 ## Installation
