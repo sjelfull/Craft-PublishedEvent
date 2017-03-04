@@ -60,7 +60,7 @@ class PublishedEventPlugin extends BasePlugin
      */
     public function getReleaseFeedUrl ()
     {
-        return 'https://raw.githubusercontent.com/sjelfull/publishedevent/master/releases.json';
+        return 'https://raw.githubusercontent.com/sjelfull/Craft-PublishedEvent/master/releases.json';
     }
 
     /**
@@ -92,7 +92,7 @@ class PublishedEventPlugin extends BasePlugin
      */
     public function getDeveloperUrl ()
     {
-        return 'http://sjelfull.no';
+        return 'http://superbig.co';
     }
 
     /**
