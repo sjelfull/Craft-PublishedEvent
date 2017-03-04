@@ -18,22 +18,31 @@ class PublishedEventPlugin extends BasePlugin
     /**
      * @return mixed
      */
-    public function init()
+    public function init ()
     {
+        parent::init();
+
+        Craft::import('plugins.publishedevent.events.PublishedEvent');
+
+        craft()->on('publishedEvent.onPublished', function (PublishedEvent $event) {
+            $entryModel = $event->params['entry'];
+
+            PublishedEventPlugin::log('Yo Element with id ' . $entryModel->id . ' has been published since last check - ' . $entryModel->title);
+        });
     }
 
     /**
      * @return mixed
      */
-    public function getName()
+    public function getName ()
     {
-         return Craft::t('Published event');
+        return Craft::t('Published Event');
     }
 
     /**
      * @return mixed
      */
-    public function getDescription()
+    public function getDescription ()
     {
         return Craft::t('Triggers a event for elements that was enabled at a given time.');
     }
@@ -41,7 +50,7 @@ class PublishedEventPlugin extends BasePlugin
     /**
      * @return string
      */
-    public function getDocumentationUrl()
+    public function getDocumentationUrl ()
     {
         return 'https://github.com/sjelfull/publishedevent/blob/master/README.md';
     }
@@ -49,7 +58,7 @@ class PublishedEventPlugin extends BasePlugin
     /**
      * @return string
      */
-    public function getReleaseFeedUrl()
+    public function getReleaseFeedUrl ()
     {
         return 'https://raw.githubusercontent.com/sjelfull/publishedevent/master/releases.json';
     }
@@ -57,7 +66,7 @@ class PublishedEventPlugin extends BasePlugin
     /**
      * @return string
      */
-    public function getVersion()
+    public function getVersion ()
     {
         return '1.0.0';
     }
@@ -65,7 +74,7 @@ class PublishedEventPlugin extends BasePlugin
     /**
      * @return string
      */
-    public function getSchemaVersion()
+    public function getSchemaVersion ()
     {
         return '1.0.0';
     }
@@ -73,7 +82,7 @@ class PublishedEventPlugin extends BasePlugin
     /**
      * @return string
      */
-    public function getDeveloper()
+    public function getDeveloper ()
     {
         return 'Fred Carlsen';
     }
@@ -81,7 +90,7 @@ class PublishedEventPlugin extends BasePlugin
     /**
      * @return string
      */
-    public function getDeveloperUrl()
+    public function getDeveloperUrl ()
     {
         return 'http://sjelfull.no';
     }
@@ -89,32 +98,32 @@ class PublishedEventPlugin extends BasePlugin
     /**
      * @return bool
      */
-    public function hasCpSection()
+    public function hasCpSection ()
     {
         return false;
     }
 
     /**
      */
-    public function onBeforeInstall()
+    public function onBeforeInstall ()
     {
     }
 
     /**
      */
-    public function onAfterInstall()
+    public function onAfterInstall ()
     {
     }
 
     /**
      */
-    public function onBeforeUninstall()
+    public function onBeforeUninstall ()
     {
     }
 
     /**
      */
-    public function onAfterUninstall()
+    public function onAfterUninstall ()
     {
     }
 }

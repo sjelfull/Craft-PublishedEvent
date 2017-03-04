@@ -16,9 +16,13 @@ namespace Craft;
 class PublishedEventService extends BaseApplicationComponent
 {
     /**
+     * Fires an 'onPublished' event.
+     *
+     * @param PublishedEvent $event
      */
-    public function exampleService()
+    public function onPublished (PublishedEvent $event)
     {
+        $this->raiseEvent('onPublished', $event);
     }
 
 }

@@ -31,25 +31,26 @@ class PublishedEventController extends BaseController
         $criteria         = craft()->elements->getCriteria(ElementType::Entry);
         $criteria->status = EntryModel::PENDING;
 
-        $entries = $criteria->find();
-        $ids     = $criteria->ids();
+        $pendingEntries = $criteria->find();
+        $pendingIds     = $criteria->ids();
 
         // Get element ids of existing records
         $existingRecords = PublishedEventRecord::model()->findAll();
 
         // If a record exists for a entry that is enabled since last check, trigger event
         foreach ($existingRecords as $existingRecord) {
-            // Should account for changed postDate?
-            // Incase someone changes their mind and want to immediately publish
-            // Setting, perhaps?
-            $samePostDate = $existingRecord->enableDate === $existingRecord->element->postDate;
 
-            if ( !in_array($existingRecord->elementId, $ids) ) {
-                PublishedEventPlugin::log('Element with id ' . $existingRecord->elementId . ' has been published since last check');
+            $amongPendingEntries = in_array($existingRecord->elementId, $pendingIds);
+
+            if ( !$amongPendingEntries ) {
+                $entry = craft()->elements->getElementById($existingRecord->elementId);
+                $event = new PublishedEvent($this, [ 'entry' => $entry ]);
+                craft()->publishedEvent->onPublished($event);
+                $existingRecord->delete();
             }
         }
 
-        foreach ($entries as $entry) {
+        foreach ($pendingEntries as $entry) {
             $record = PublishedEventRecord::model()->findByAttributes([
                 'elementId' => $entry->id,
             ]);
@@ -62,8 +63,16 @@ class PublishedEventController extends BaseController
                 $record->enableDate  = $entry->postDate;
                 $record->dateCreated = $dateTime;
                 $record->dateUpdated = $dateTime;
-
                 $record->save();
+            }
+            else {
+                $samePostDate = $record->enableDate === $entry->postDate;
+
+                // Account for changed postDate?
+                if ( !$samePostDate ) {
+                    $record->enableDate = $entry->postDate;
+                    $record->save();
+                }
             }
         }
 
