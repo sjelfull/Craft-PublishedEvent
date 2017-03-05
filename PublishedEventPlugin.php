@@ -68,7 +68,7 @@ class PublishedEventPlugin extends BasePlugin
      */
     public function getVersion ()
     {
-        return '1.0.0';
+        return '1.0.1';
     }
 
     /**
@@ -101,29 +101,5 @@ class PublishedEventPlugin extends BasePlugin
     public function hasCpSection ()
     {
         return false;
-    }
-
-    /**
-     */
-    public function onBeforeInstall ()
-    {
-    }
-
-    /**
-     */
-    public function onAfterInstall ()
-    {
-    }
-
-    /**
-     */
-    public function onBeforeUninstall ()
-    {
-    }
-
-    /**
-     */
-    public function onAfterUninstall ()
-    {
     }
 }

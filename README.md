@@ -18,11 +18,13 @@ Published event works on Craft 2.4.x and Craft 2.5.x.
 
 ### Checking for published elements
 
-To check for any elements that has been published, you have to run the controller action at the interval you need, for example from a cron job.
+To check for any elements that has been published, you have to run either the console command or controller action at the interval you need, for example from a cron job.
 
-Make a request to the action `publishedEvent/checkElements`:
+Run `./craft/app/etc/console/yiic publishedEvent` OR
 
- `curl --silent http://example.com/actions/publishedEvent/checkElements`
+ Make a request to the action `publishedEvent/check`:
+
+  `curl --silent http://example.com/actions/publishedEvent/check`
 
 ### The `publishedEvent.onPublished` event
 
@@ -46,7 +48,12 @@ class SomePlugin extends BasePlugin
 
 ## Published event Changelog
 
-### 1.0.0 -- 2016.12.02
+### 1.0.1 -- 2017.03.05
+
+* Added console command
+* Renamed checkElements action to check
+
+### 1.0.0 -- 2017.03.04
 
 * Initial release
 

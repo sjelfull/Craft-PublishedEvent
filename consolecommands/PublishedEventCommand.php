@@ -2,7 +2,7 @@
 /**
  * Published event plugin for Craft CMS
  *
- * PublishedEvent Controller
+ * PublishedEvent Record
  *
  * @author    Fred Carlsen
  * @copyright Copyright (c) 2016 Fred Carlsen
@@ -13,23 +13,18 @@
 
 namespace Craft;
 
-class PublishedEventController extends BaseController
+class PublishedEventCommand extends BaseCommand
 {
+    public function actionIndex ()
+    {
+        $this->check();
+    }
 
-    /**
-     * @var    bool|array Allows anonymous access to this controller's actions.
-     * @access protected
-     */
-    protected $allowAnonymous = array(
-        'actionIndex',
-    );
-
-    /**
-     */
     public function actionCheck ()
     {
+        echo "Checking for any pending entries";
         $existingRecords = craft()->publishedEvent->check();
 
-        $this->returnJson($existingRecords);
+        echo count($existingRecords) . "entries waiting to be published";
     }
 }
