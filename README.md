@@ -48,6 +48,10 @@ class SomePlugin extends BasePlugin
 
 ## Published event Changelog
 
+### 1.0.1 -- 2017.03.06
+
+* Cleanup
+
 ### 1.0.1 -- 2017.03.05
 
 * Added console command

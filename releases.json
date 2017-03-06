@@ -1,5 +1,13 @@
 [
   {
+    "version": "1.0.2",
+    "downloadUrl": "https://github.com/sjelfull/Craft-PublishedEvent/archive/master.zip",
+    "date": "2017-03-06T09:43:34.595Z",
+    "notes": [
+      "[Improved] Cleanup"
+    ]
+  },
+  {
     "version": "1.0.1",
     "downloadUrl": "https://github.com/sjelfull/Craft-PublishedEvent/archive/master.zip",
     "date": "2017-03-05T09:43:34.595Z",

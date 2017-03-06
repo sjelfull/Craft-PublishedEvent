@@ -23,12 +23,6 @@ class PublishedEventPlugin extends BasePlugin
         parent::init();
 
         Craft::import('plugins.publishedevent.events.PublishedEvent');
-
-        craft()->on('publishedEvent.onPublished', function (PublishedEvent $event) {
-            $entryModel = $event->params['entry'];
-
-            PublishedEventPlugin::log('Yo Element with id ' . $entryModel->id . ' has been published since last check - ' . $entryModel->title);
-        });
     }
 
     /**
@@ -68,7 +62,7 @@ class PublishedEventPlugin extends BasePlugin
      */
     public function getVersion ()
     {
-        return '1.0.1';
+        return '1.0.2';
     }
 
     /**
@@ -93,13 +87,5 @@ class PublishedEventPlugin extends BasePlugin
     public function getDeveloperUrl ()
     {
         return 'http://superbig.co';
-    }
-
-    /**
-     * @return bool
-     */
-    public function hasCpSection ()
-    {
-        return false;
     }
 }
